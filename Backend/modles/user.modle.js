@@ -18,7 +18,7 @@ const userSchema = new mongoose.Schema({
     email:{
         type:String,
         required:true,
-        unique:true,
+        unique:[true,"Email is already use Token "],
         minlength:[5,"email must be at least 5 characters long"]
     },
     password:{
@@ -32,7 +32,7 @@ const userSchema = new mongoose.Schema({
 });
 
 userSchema.methods.generateAuthToken = function(){
-    const token = jwt.sign({_id:this._id},process.env.JWT_SECRET);
+    const token = jwt.sign({_id:this._id},process.env.JWT_SECRET,{expiresIn:"1h"});
     return token;
 }
 
