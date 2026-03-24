@@ -48,8 +48,6 @@ module.exports.login = async (req,res,next) =>{
 
     const {email,password} = req.body;
 
-    console.log(req.body)
-
     var user = await userModel.findOne({email}).select('+password');
 
      if (!user) {

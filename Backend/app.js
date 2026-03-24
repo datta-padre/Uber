@@ -5,6 +5,7 @@ const express = require("express");
 const app = express();
 const ConnectToDb = require("./DB/Db");
 const userRouter = require("./routers/user.routes");
+const captainRouter = require("./routers/captain.routes");
 const cookieparser = require("cookie-parser");
 
 ConnectToDb();
@@ -15,6 +16,7 @@ app.use(express.urlencoded({extended:true}));
 app.use(cookieparser());
 
 app.use("/users",userRouter);
+app.use("/captains",captainRouter)
 
 app.get("/",(req,res)=>{
     res.send("Hiiii")
